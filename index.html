@@ -129,16 +129,17 @@
     }
 
 .zoomable {
-  width: 400px;  /* Start large */
+  width: 100px; /* Start small */
   transition: all 0.3s ease;
   cursor: pointer;
   border-radius: 10px;
   margin-top: 20px;
 }
 
-.zoomable.shrink {
-  width: 100px;  /* Becomes small when clicked */
+.zoomable.enlarged {
+  width: 400px; /* Grow when clicked */
 }
+
 
 
   </style>
@@ -251,6 +252,7 @@
 
 </body>
 </html>
+
 
 
 
