@@ -75,6 +75,8 @@
       object-fit: cover;
       border-radius: 10px;
       margin-top: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
     .services ul {
@@ -127,21 +129,23 @@
       text-decoration: underline;
       color: #ffcc00;
     }
-    
-.zoomable {
-  width: 100px; /* Start small */
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-top: 20px;
-}
 
-.zoomable.shrink {
-  width: 400px; /* Zoom on click */
-}
+    .zoomable {
+      width: 100px; /* Start small */
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
+    .zoomable.shrink {
+      width: 400px; /* Zoom on click */
+    }
 
-
+    /* Zoom effect for images */
+    .zoomable:hover {
+      transform: scale(1.2); /* Slight zoom on hover */
+    }
 
   </style>
 </head>
@@ -247,15 +251,9 @@
   <!-- Zoom toggle script -->
   <script>
     function toggleZoom(img) {
-      img.classList.toggle("enlarged");
+      img.classList.toggle("shrink");
     }
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
