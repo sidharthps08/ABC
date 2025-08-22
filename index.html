@@ -127,6 +127,19 @@
       text-decoration: underline;
       color: #ffcc00;
     }
+
+    /* Zoomable image CSS */
+    .zoomable {
+      width: 150px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .zoomable.enlarged {
+      width: 500px;
+    }
   </style>
 </head>
 <body>
@@ -167,46 +180,44 @@
         <li>🟢 Special Sessions for Senior Citizens</li>
         <li>🟢 Female-Friendly Training Options</li>
       </ul>
-      <img src="maruti800.jpeg" alt="Driving school car">
-
+      <!-- Zoomable Image -->
+      <img src="maruti800.jpeg" alt="Driving school car" class="zoomable" onclick="toggleZoom(this)">
+    </section>
 
     <section id="instructor" class="instructor">
       <h2 class="section-title">Meet Your Instructor</h2>
-      <img src="jubeeshimg.jpeg"Driving Instructor" />
+      <img src="jubeeshimg.jpeg" alt="Driving Instructor" />
       <p><strong>JUBEESH KRISHNAN</strong>, Lead Instructor, has over 15 years of experience in professional driver training. He is certified by Kerala MVD and specializes in creating a calm and friendly learning environment for all students.</p>
+    </section>
+
     <section id="instructor" class="instructor">
-  <h2 class="section-title">Meet Our Instructors</h2>
-
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-
-   <div>
-  <img src="sinanimg.jpeg" alt="Instructor Sinan" />
-  <p><strong>SINAN</strong></p>
-</div>
-<div>
-      <img src="akshayachuimg.JPG"Instructor Ayesha" />
-      <p><strong>AKSHAY</strong></p>
-    </div>
-
-
-    <div>
-      <img src="sidharthimg.jpeg" alt="Instructor Ayesha" />
-      <p><strong>SIDHARTH</strong></p>
-    </div>
-
-    <div>
-      <img src="kutte10img.JPG" alt="Instructor Ayesha" />
-      <p><strong>GITHESH ( kuttettan )</strong></p>
-    </div>
-    <div>
-      <img src="bijuimg.JPG" alt="Instructor Rahul" />
-      <p><strong>BIJU</strong></p>
-    </div>
-  <div>
-      <img src="noufalimg.jpeg" alt="Instructor Rahul" />
-      <p><strong>NOUFAL</strong></p>
-    </div>
-  </div>
+      <h2 class="section-title">Meet Our Instructors</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+        <div>
+          <img src="sinanimg.jpeg" alt="Instructor Sinan" />
+          <p><strong>SINAN</strong></p>
+        </div>
+        <div>
+          <img src="akshayachuimg.JPG" alt="Instructor Akshay" />
+          <p><strong>AKSHAY</strong></p>
+        </div>
+        <div>
+          <img src="sidharthimg.jpeg" alt="Instructor Sidharth" />
+          <p><strong>SIDHARTH</strong></p>
+        </div>
+        <div>
+          <img src="kutte10img.JPG" alt="Instructor Githesh" />
+          <p><strong>GITHESH (kuttettan)</strong></p>
+        </div>
+        <div>
+          <img src="bijuimg.JPG" alt="Instructor Biju" />
+          <p><strong>BIJU</strong></p>
+        </div>
+        <div>
+          <img src="noufalimg.jpeg" alt="Instructor Noufal" />
+          <p><strong>NOUFAL</strong></p>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="contact">
@@ -216,11 +227,11 @@
       <p>📧 <strong>Email:</strong> <a href="mailto:abcmds.payyoli@gmail.com">abcmds.payyoli@gmail.com</a></p>
       <p>📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/abcmdspayyoli?igsh=MXJ5Y2c2NXZhMGE5ag==" target="_blank">@abcmdspayyoli</a></p>
       <p>💬 <strong>WhatsApp:</strong> <a class="whatsapp-button" href="https://wa.me/7559966331" target="_blank">Chat on WhatsApp</a></p>
-       <!-- Google Map Link for Directions -->
-  <h3>Get Directions</h3>
-  <a href="https://www.google.com/maps/dir/?api=1&destination=11.515707,75.6222916" target="_blank" class="whatsapp-button">
-    Get Directions to ABC Driving School
-  </a>
+
+      <h3>Get Directions</h3>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=11.515707,75.6222916" target="_blank" class="whatsapp-button">
+        Get Directions to ABC Driving School
+      </a>
     </section>
 
   </div>
@@ -229,16 +240,12 @@
     &copy; 2025 ABC Driving School. All rights reserved.
   </footer>
 
+  <!-- Zoom toggle script -->
+  <script>
+    function toggleZoom(img) {
+      img.classList.toggle("enlarged");
+    }
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
