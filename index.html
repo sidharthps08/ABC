@@ -208,6 +208,91 @@
 
   </div>
 
+  <section id="reviews" class="container">
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+  <h2 class="section-title">Student Reviews</h2>
+
+  <div style="background: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #ddd; margin-bottom: 30px;">
+    <h3 style="margin-top:0; color: #004080;">Share Your Experience</h3>
+    <form id="reviewForm">
+      <input type="text" id="reviewerName" placeholder="Your Name" required 
+             style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;">
+      
+      <select id="reviewRating" style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;">
+        <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+        <option value="4">⭐⭐⭐⭐ - Very Good</option>
+        <option value="3">⭐⭐⭐ - Good</option>
+        <option value="2">⭐⭐ - Average</option>
+        <option value="1">⭐ - Poor</option>
+      </select>
+
+      <textarea id="reviewText" rows="4" placeholder="How was your training at ABC Driving School?" required 
+                style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; font-family: sans-serif;"></textarea>
+      
+      <button type="submit" class="whatsapp-button" style="border: none; cursor: pointer; width: 100%; font-size: 1.1em;">
+        Post Review
+      </button>
+    </form>
+  </div>
+
+  <div id="reviewsDisplay">
+    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 5px solid #0066cc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px;">
+      <h4 style="margin: 0; color: #004080;">Sample Student</h4>
+      <div style="color: #ffcc00; margin: 5px 0;">⭐⭐⭐⭐⭐</div>
+      <p style="margin: 5px 0; font-style: italic;">"Great experience! The instructors at Payyoli branch are very professional."</p>
+      <small style="color: #888;">Posted on: Jan 15, 2025</small>
+    </div>
+  </div>
+</section>
+
+<script>
+  const reviewForm = document.getElementById('reviewForm');
+  const reviewsDisplay = document.getElementById('reviewsDisplay');
+
+  // 1. Function to display a review on the page
+  function addReviewToPage(name, rating, text, date) {
+    const starString = "⭐".repeat(rating);
+    const reviewHTML = `
+      <div style="background: white; padding: 20px; border-radius: 8px; border-left: 5px solid #0066cc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px; animation: fadeIn 0.5s ease;">
+        <h4 style="margin: 0; color: #004080;">${name}</h4>
+        <div style="color: #ffcc00; margin: 5px 0;">${starString}</div>
+        <p style="margin: 5px 0; font-style: italic;">"${text}"</p>
+        <small style="color: #888;">Posted on: ${date}</small>
+      </div>
+    `;
+    reviewsDisplay.insertAdjacentHTML('afterbegin', reviewHTML);
+  }
+
+  // 2. Load existing reviews from LocalStorage when page opens
+  window.onload = function() {
+    const savedReviews = JSON.parse(localStorage.getItem('abc_driving_reviews')) || [];
+    savedReviews.forEach(rev => {
+      addReviewToPage(rev.name, rev.rating, rev.text, rev.date);
+    });
+  };
+
+  // 3. Handle Form Submission
+  reviewForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('reviewerName').value;
+    const rating = document.getElementById('reviewRating').value;
+    const text = document.getElementById('reviewText').value;
+    const date = new Date().toLocaleDateString();
+
+    // Add to Page
+    addReviewToPage(name, rating, text, date);
+
+    // Save to LocalStorage for persistence
+    const savedReviews = JSON.parse(localStorage.getItem('abc_driving_reviews')) || [];
+    savedReviews.push({ name, rating, text, date });
+    localStorage.setItem('abc_driving_reviews', JSON.stringify(savedReviews));
+
+    // Reset Form
+    reviewForm.reset();
+    alert("Thank you for your feedback!");
+  });
+</script>
   <footer>
     &copy; 2025 ABC Driving School. All rights reserved.
   </footer>
@@ -221,6 +306,7 @@
 
 </body>
 </html>
+
 
 
 
