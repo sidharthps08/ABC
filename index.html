@@ -40,16 +40,41 @@
       font-weight: bold;
     }
 
-    .hero {
-      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
-      height: 300px;
+    /* Slideshow Styles */
+    .hero-container {
+      position: relative;
+      height: 350px; /* Adjusted height for better visibility */
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-text {
       color: #fff;
-      font-size: 2em;
+      font-size: 2.5em;
       font-weight: bold;
-      text-shadow: 2px 2px 4px #000;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      text-align: center;
+      padding: 0 20px;
     }
 
     .container {
@@ -71,11 +96,10 @@
     .about img,
     .services img {
       width: 100%;
-      max-height: 300px;
+      max-height: 400px;
       object-fit: cover;
       border-radius: 10px;
       margin-top: 20px;
-      cursor: pointer;
       transition: transform 0.3s ease;
     }
 
@@ -84,24 +108,11 @@
       padding-left: 20px;
     }
 
-    .instructor {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .instructor img {
-      border-radius: 50%;
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-
     .whatsapp-button {
       display: inline-block;
       background-color: #25D366;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
@@ -111,13 +122,16 @@
 
     .whatsapp-button:hover {
       background-color: #1ebe5d;
+      text-decoration: none;
+      color: white;
     }
 
     footer {
       background: #004080;
       color: white;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
+      margin-top: 40px;
     }
 
     a {
@@ -130,21 +144,10 @@
       color: #ffcc00;
     }
 
-    .zoomable {
-      width: 10px; /* Start small */
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .zoomable.shrink {
-      width: 10px; /* Zoom on click */
-    }
-
-    /* Zoom effect for images */
+    /* Improved Zoom effect */
     .zoomable:hover {
-      transform: scale(1.2); /* Slight zoom on hover */
+      transform: scale(1.02);
+      cursor: pointer;
     }
 
   </style>
@@ -163,8 +166,18 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <div class="hero">
-    Learn to Drive with Confidence
+  <div class="hero-container">
+    <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=80');">
+      <div class="hero-text">Learn to Drive with Confidence</div>
+    </div>
+    
+    <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1449965072333-66444eb88835?auto=format&fit=crop&w=1400&q=80');">
+      <div class="hero-text">40+ Years of Excellence</div>
+    </div>
+    
+    <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80');">
+      <div class="hero-text">Certified Professional Instructors</div>
+    </div>
   </div>
 
   <div class="container">
@@ -172,7 +185,7 @@
     <section id="about" class="about">
       <h2 class="section-title">About Us</h2>
       <p>ABC Driving School has been a trusted name in the Payyoli and Kozhikode region for over 40 years. We focus on road safety, confidence building, and driver awareness. With modern dual-control vehicles and certified instructors, we ensure top-quality training for learners of all ages.</p>
-      <img src="https://images.unsplash.com/photo-1605296867470-0d5b8b83573c?auto=format&fit=crop&w=1400&q=80" alt="Driving lesson in progress">
+      <img class="zoomable" src="https://images.unsplash.com/photo-1605296867470-0d5b8b83573c?auto=format&fit=crop&w=1400&q=80" alt="Driving lesson in progress">
     </section>
 
     <section id="services" class="services">
@@ -187,72 +200,71 @@
         <li>🟢 Special Sessions for Senior Citizens</li>
         <li>🟢 Female-Friendly Training Options</li>
         <li>🟢 Computer Training for Learner Licence</li>
-        <li>🟢 RTO Related Workes</li>
+        <li>🟢 RTO Related Works</li>
       </ul>
-   
     </section>
 
-<section id="contact" class="contact">
-  <h2 class="section-title">Contact Us</h2>
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact Us</h2>
 
-  <div class="contact-branch" style="margin-bottom: 30px;">
-    <h3>Main Office - Payyoli</h3>
-    <p>📍 <strong>Address:</strong> Opposite Head Post Office, SBI building, Payyoli, Kozhikode, Kerala</p>
-    <p>📞 <strong>Phone:</strong> <a href="tel:+919447949630">+91 9447949630</a></p>
-    <p>📧 <strong>Email:</strong> <a href="mailto:abcmds.payyoli@gmail.com">abcmds.payyoli@gmail.com</a></p>
-    <p>📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/abcmdspayyoli?igsh=MXJ5Y2c2NXZhMGE5ag==" target="_blank">@abcmdspayyoli</a></p>
-    <p>💬 <strong>WhatsApp:</strong> <a class="whatsapp-button" href="https://wa.me/7559966331" target="_blank">Chat on WhatsApp</a></p>
-    
-    <div class="directions-link" style="margin-top: 10px;">
-      <a href="https://maps.google.com/?q=ABC+Driving+School+Payyoli" target="_blank" class="whatsapp-button">
-        Get Directions to Payyoli Branch
-      </a>
-    </div>
-  </div>
-
-  <hr style="border: 0; border-top: 1px solid #ccc; margin: 40px 0;">
-
-  <div class="sub-offices">
-    <h3 style="margin-bottom: 20px;">Our Sub-offices</h3>
-    
-    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-      
-      <div class="branch-item" style="flex: 1; min-width: 250px; border-left: 3px solid #eee; padding-left: 15px;">
-        <h4>Muyippoth</h4>
-        <p>📍 Address: [Insert Building Name/Street]</p>
-        <a href="https://www.google.com/maps/search/ABC+Driving+School+Muyippoth" target="_blank" style="text-decoration: none; color: #25D366; font-weight: bold;">
-          🗺️ Get Directions to Muyippoth
-        </a>
+      <div class="contact-branch" style="margin-bottom: 30px;">
+        <h3>Main Office - Payyoli</h3>
+        <p>📍 <strong>Address:</strong> Opposite Head Post Office, SBI building, Payyoli, Kozhikode, Kerala</p>
+        <p>📞 <strong>Phone:</strong> <a href="tel:+919447949630">+91 9447949630</a></p>
+        <p>📧 <strong>Email:</strong> <a href="mailto:abcmds.payyoli@gmail.com">abcmds.payyoli@gmail.com</a></p>
+        <p>📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/abcmdspayyoli?igsh=MXJ5Y2c2NXZhMGE5ag==" target="_blank">@abcmdspayyoli</a></p>
+        <p>💬 <strong>WhatsApp:</strong> <a class="whatsapp-button" href="https://wa.me/7559966331" target="_blank">Chat on WhatsApp</a></p>
+        
+        <div class="directions-link" style="margin-top: 10px;">
+          <a href="https://maps.google.com" target="_blank" class="whatsapp-button" style="background-color: #0066cc;">
+            Get Directions to Payyoli Branch
+          </a>
+        </div>
       </div>
 
-      <div class="branch-item" style="flex: 1; min-width: 250px; border-left: 3px solid #eee; padding-left: 15px;">
-        <h4>Naduvannur</h4>
-        <p>📍 Address: [Insert Building Name/Street]</p>
-        <a href="https://www.google.com/maps/search/ABC+Driving+School+Naduvannur" target="_blank" style="text-decoration: none; color: #25D366; font-weight: bold;">
-          🗺️ Get Directions to Naduvannur
-        </a>
-      </div>
+      <hr style="border: 0; border-top: 1px solid #ccc; margin: 40px 0;">
 
-    </div>
-  </div>
-</section>
-</section>
+      <div class="sub-offices">
+        <h3 style="margin-bottom: 20px;">Our Sub-offices</h3>
+        
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+          <div class="branch-item" style="flex: 1; min-width: 250px; border-left: 3px solid #eee; padding-left: 15px;">
+            <h4>Muyippoth</h4>
+            <p>📍 Address: [Insert Building Name/Street]</p>
+            <a href="https://maps.google.com" target="_blank" style="text-decoration: none; color: #25D366; font-weight: bold;">
+              🗺️ Get Directions to Muyippoth
+            </a>
+          </div>
+
+          <div class="branch-item" style="flex: 1; min-width: 250px; border-left: 3px solid #eee; padding-left: 15px;">
+            <h4>Naduvannur</h4>
+            <p>📍 Address: [Insert Building Name/Street]</p>
+            <a href="https://maps.google.com" target="_blank" style="text-decoration: none; color: #25D366; font-weight: bold;">
+              🗺️ Get Directions to Naduvannur
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>
     &copy; 2026 ABC Driving School. All rights reserved.
   </footer>
 
-  <!-- Zoom toggle script -->
   <script>
-    function toggleZoom(img) {
-      img.classList.toggle("shrink");
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
     }
+
+    // Change image every 4 seconds
+    setInterval(showNextSlide, 4000);
   </script>
 
 </body>
 </html>
-
-
-
-
